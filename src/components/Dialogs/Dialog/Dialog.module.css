@@ -1,0 +1,40 @@
+.dialog {
+   border: 1px solid var(--color-blue-light);
+   border-radius: var(--radius);
+   margin-bottom: 10px;
+}
+.dialog:hover {
+   background-color: rgba(255, 255, 255, .3);
+}
+.dialog.active {
+   background-color: var(--color-blue-light);
+}
+.dialog.active .user_name {
+   color: var(--color-text-light);
+}
+
+.user_link {
+   display: flex;
+   align-items: center;
+   padding: 10px 15px 10px 10px;
+   text-decoration: none;
+}
+.user_photo {
+   --size: 50px;
+   display: block;
+   position: relative;
+   width: var(--size);
+   height: var(--size);
+   border-radius: 50%;
+   margin-right: 15px;
+   overflow: hidden;
+}
+.user_photo img {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+.user_name {
+   color: var(--color-text);
+}

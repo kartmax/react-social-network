@@ -1,0 +1,26 @@
+.messages {
+   padding: 15px;
+}
+.message_item {
+   display: flex;
+}
+.message_item + .message_item {
+   margin-top: 10px;
+}
+.message_wrap {
+   display: inline-block;
+   padding: 10px;
+   border-radius: var(--radius);
+   max-width: 55%;
+}
+
+.message_wrap.your_message {
+   background-color: rgba(255, 255, 255, .8);
+}
+
+.message_wrap.my_message {
+   background-color: rgba(86, 183, 248, .5);
+   background-color: var(--color-blue-deep);
+   color: var(--color-text-light);
+   margin-left: auto;
+}

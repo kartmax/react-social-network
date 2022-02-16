@@ -1,0 +1,27 @@
+.profile_wrap {
+
+}
+.profile_top {
+   position: relative;
+   overflow: hidden;
+   min-height: 200px;
+}
+.profile_top img {
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.profile_bottom {
+   padding: 15px;
+}
+
+
+
+
+

@@ -1,0 +1,10 @@
+.frindes {
+   margin-top: 20px;
+   background-color: var(--color-blue-light);
+   padding: 15px;
+}
+
+.frindes_list {
+   display: flex;
+   flex-wrap: wrap;
+}

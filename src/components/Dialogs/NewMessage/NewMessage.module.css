@@ -1,0 +1,37 @@
+.new_message {
+   flex: 1 1 100%;
+   position: relative;
+}
+
+.new_message_area {
+   width: 100%;
+   min-height: 100px;
+   border: none;
+   border-radius: var(--radius);
+   padding: 15px 45px 15px 15px;
+}
+
+.btn_add_message {
+   --size: 35px;
+   --position: 5px;
+   width: var(--size);
+   height: var(--size);
+   position: absolute;
+   top: var(--position);
+   right: var(--position);
+   background: none;
+   border: none;
+   padding: 0;
+   border-radius: 50%;
+   overflow: hidden;
+}
+.btn_add_message:hover img {
+   transform: scale(1.1);
+}
+
+.btn_add_message img {
+   position: absolute;
+   right: 0;
+   top: 0;
+   transition: transform var(--transition);
+}
