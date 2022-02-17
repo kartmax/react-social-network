@@ -12,29 +12,21 @@ import Settings from './components/Settings/Settings'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App(props) {
+
+   let store = props.store;
+
    return (
       <BrowserRouter>
          <div className='app-wrapper'>
             <Header />
-            {/* <Navbar state={props.store.getState().sidebar} /> */}
             <Navbar state={props.store.getState().SIDEBAR_REDUSER} />
             <main className="main">
                <Routes>
-                  <Route path='/profile' element={
-                     <Profile 
-                        // state={props.store.getState().profilePage} 
-                        state={props.store.getState().ADD_NEW_POST_REDUSER} 
-                        dispatch={props.store.dispatch.bind(props.store)} 
-                     />} />
-                  <Route path='/dialogs/*' element={
-                     <Dialogs 
-                        // state={props.store.getState().messagesPage} 
-                        state={props.store.getState().ADD_NEW_MESSAGE_REDUSER} 
-                        dispatch={props.store.dispatch.bind(props.store)}
-                     />} />
-                  <Route path='/news' element={<News />} />
-                  <Route path='/music' element={<Music />} />
-                  <Route path='/settings' element={<Settings />} />
+                  <Route path='/profile' element = {<Profile store={store} />} />
+                  <Route path='/dialogs/*' element = {<Dialogs store={store} />} />
+                  <Route path='/news' element = {<News />} />
+                  <Route path='/music' element = {<Music />} />
+                  <Route path='/settings' element = {<Settings />} />
                </Routes>
             </main>
             <Footer />

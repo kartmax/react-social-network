@@ -1,9 +1,13 @@
 import styles from './Profile.module.css';
-import NewPost from './NewPost/NewPost';
 import Posts from './Posts/Posts';
 import User from './User/User';
+import NewPostContainer from './NewPost/NewPostContainer';
 
 const Profile = (props) => {
+
+   let store = props.store;
+   let stateProfile = store.getState().ADD_NEW_POST_REDUSER;
+
    return (
       <div className={`${styles.profile_wrap}`}>
 
@@ -12,12 +16,9 @@ const Profile = (props) => {
          </div>
 
          <div className={styles.profile_bottom}>
-            <User main_user={props.state.mainUser} />
-            <NewPost 
-               newTextPost={props.state.newTextPost} 
-               dispatch={props.dispatch}
-            />
-            <Posts postData={props.state.postData} />
+            <User main_user={stateProfile.mainUser} />
+            <NewPostContainer store={store} />
+            <Posts postData={stateProfile.postData} />
          </div>
 
       </div>
