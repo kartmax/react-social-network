@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import Frindes from './Frindes/Frindes';
 import styles from './Nav.module.css';
 
-const Nav = (props) => {
+const Nav = () => {
    let activeClass = ({isActive}) => isActive ? 'active-link' : 'none';
    
    return (
@@ -27,7 +27,7 @@ const Nav = (props) => {
             </ul>
          </div>
 
-         <Frindes state={props.state} />
+         <Frindes />
       </nav>
    )
 }
