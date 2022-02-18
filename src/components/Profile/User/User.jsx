@@ -1,27 +1,20 @@
 import StoreContext from '../../../StoreContext';
 import styles from './User.module.css';
 
-const User = () => {
+const User = (props) => {
+
+   let main_user = props.state;
+
    return (
-      <StoreContext.Consumer>
-         {
-            (store) => {
-               let main_user = store.getState().ADD_NEW_POST_REDUSER.mainUser;
+      <div className={styles.user}>
+         <div className={styles.avatar}>
+            <img alt="description" src={main_user.avatar}></img>
+         </div>
+         <div className={styles.description}>
 
-               return (
-                  <div className={styles.user}>
-                     <div className={styles.avatar}>
-                        <img alt="description" src={main_user.avatar}></img>
-                     </div>
-                     <div className={styles.description}>
-
-                     </div>
-                  </div>
-               );
-            }
-         }
-      </StoreContext.Consumer>
-   )
+         </div>
+      </div>
+   );
 
 };
 

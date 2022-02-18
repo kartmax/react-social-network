@@ -2,26 +2,23 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import store from './redux/redux-store';
+import { Provider } from 'react-redux';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import StoreContext from './StoreContext';
 
 const rerenderAll = () => {
    ReactDOM.render(
       <React.StrictMode>
-         <StoreContext.Provider value={store}>
+         <Provider store={store}>
             <App />
-         </StoreContext.Provider>
+         </Provider>
       </React.StrictMode>,
       document.getElementById('root')
    );
 };
-
 rerenderAll();
-
-store.subscribe(rerenderAll)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

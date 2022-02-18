@@ -1,6 +1,6 @@
 import styles from './Profile.module.css';
-import Posts from './Posts/Posts';
-import User from './User/User';
+import PostsContainer from './Posts/PostsContainer';
+import UserContainer from './User/UserContainer';
 import NewPostContainer from './NewPost/NewPostContainer';
 
 const Profile = () => {
@@ -13,9 +13,9 @@ const Profile = () => {
          </div>
 
          <div className={styles.profile_bottom}>
-            <User />
+            <UserContainer />
             <NewPostContainer />
-            <Posts />
+            <PostsContainer />
          </div>
 
       </div>

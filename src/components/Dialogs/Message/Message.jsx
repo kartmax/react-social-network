@@ -1,6 +1,7 @@
 import styles from './Message.module.css';
 
 const Message = (props) => {
+   
    const Paragraph = (props) => {
       return (
          <p>{props.paragraph_text}</p>

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import Frindes from './Frindes/Frindes';
+import FrindesContainer from './Frindes/FrindesContainer';
 import styles from './Nav.module.css';
 
 const Nav = () => {
@@ -27,7 +27,7 @@ const Nav = () => {
             </ul>
          </div>
 
-         <Frindes />
+         <FrindesContainer />
       </nav>
    )
 }
