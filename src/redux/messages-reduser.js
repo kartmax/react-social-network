@@ -28,10 +28,7 @@ const ADD_NEW_MESSAGE_REDUSER = (state = initialState, action ) => {
 
    switch (action.type) {
       case ADD_NEW_MESSAGE: {
-         let copyState = {...state};
-         copyState.messageData = [...state.messageData];
-
-         let arrText = copyState.textNewMessage.split('\n');
+         let arrText = state.textNewMessage.split('\n');
          if (arrText.length > 1 || arrText[0] !== '') {
             let message = {
                id: 1,
@@ -39,16 +36,20 @@ const ADD_NEW_MESSAGE_REDUSER = (state = initialState, action ) => {
                text: arrText,
             };
 
-            copyState.messageData.push(message);
-            copyState.textNewMessage = '';
+            return {
+               ...state,
+               messageData : [...state.messageData, message],
+               textNewMessage : ''
+            }
          };
-         return copyState;
+         return {...state}
       }
 
       case CHANGE_NEW_MESSAGE: {
-         let copyState = {...state};
-         copyState.textNewMessage = action.text;
-         return copyState;
+         return {
+            ...state,
+            textNewMessage : action.text,
+         }
       }
 
       default:

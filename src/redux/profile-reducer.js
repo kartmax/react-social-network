@@ -20,10 +20,7 @@ let initialState = {
 const ADD_NEW_POST_REDUSER = (state = initialState, action) => {
    switch (action.type) {
       case ADD_NEW_POST: {
-         let copyState = {...state};
-         copyState.postData = [...state.postData];
-
-         let arrText = copyState.newTextPost.split('\n');
+         let arrText = state.newTextPost.split('\n');
          if (arrText.length > 1 || arrText[0] !== '') {
             let message = {
                id: state.mainUser.id,
@@ -32,17 +29,20 @@ const ADD_NEW_POST_REDUSER = (state = initialState, action) => {
                avatar: state.mainUser.avatar,
             };
 
-            copyState.postData.unshift(message);
-            copyState.newTextPost = '';
+            return {
+               ...state,
+               postData : [message, ...state.postData],
+               newTextPost : ''
+            }
          };
-         return copyState;
+         return {...state};
       }
 
       case UPDATE_TEXT_POST: {
-         let copyState = {...state};
-         copyState.newTextPost = state.newTextPost;
-         copyState.newTextPost = action.text;
-         return copyState;
+         return {
+            ...state,
+            newTextPost : action.text,
+         }
       }
 
       default:
