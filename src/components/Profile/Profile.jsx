@@ -1,10 +1,9 @@
 import styles from './Profile.module.css';
 import PostsContainer from './Posts/PostsContainer';
-import UserContainer from './User/UserContainer';
 import NewPostContainer from './NewPost/NewPostContainer';
+import User from './User/User';
 
-const Profile = () => {
-
+const Profile = (props) => {
    return (
       <div className={`${styles.profile_wrap}`}>
 
@@ -13,7 +12,7 @@ const Profile = () => {
          </div>
 
          <div className={styles.profile_bottom}>
-            <UserContainer />
+            <User profile={props.profile} />
             <NewPostContainer />
             <PostsContainer />
          </div>

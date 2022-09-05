@@ -3,7 +3,7 @@ import FrindesContainer from './Frindes/FrindesContainer';
 import styles from './Nav.module.css';
 
 const Nav = () => {
-   let activeClass = ({isActive}) => isActive ? 'active-link' : 'none';
+   let activeClass = ({isActive}) => isActive ? 'active_link' : '';
    
    return (
       <nav className={styles.nav}>
@@ -14,6 +14,9 @@ const Nav = () => {
                </li>
                <li className={styles.item}>
                   <NavLink to='/dialogs' className={activeClass}>Messages</NavLink>
+               </li>
+               <li className={styles.item}>
+                  <NavLink to='/users' className={activeClass}>Users</NavLink>
                </li>
                <li className={styles.item}>
                   <NavLink to='/news' className={activeClass}>News</NavLink>

@@ -3,7 +3,7 @@ import Posts from './Posts';
 
 const mapStateToProps = (state) => {
    return {
-      stateProfile : state.ADD_NEW_POST_REDUSER
+      postData : state.ADD_NEW_POST_REDUSER.postData
    }
 };
 

@@ -27,6 +27,6 @@
 .item a:hover {
    background-color: var(--color-blue-deep);
 }
-a[class="active-link"] {
+a[class="active_link"] {
    background-color: var(--color-blue-deep);
 }

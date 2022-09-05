@@ -1,8 +1,10 @@
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
+const SET_PROFILE_USER = 'SET_PROFILE_USER';
 
-export const addNewPostCreateAction = () => ({ type: ADD_NEW_POST });
-export const updateTextPostCreateAction = (text) => ({ type: UPDATE_TEXT_POST, text: text });
+export const addNewPostAC = () => ({ type: ADD_NEW_POST });
+export const updateTextPostAC = (text) => ({ type: UPDATE_TEXT_POST, text: text });
+export const setProfileUserAC = (profile) => ({ type: SET_PROFILE_USER, profile: profile });
 
 let initialState = {
    postData: [
@@ -15,6 +17,7 @@ let initialState = {
       id: 5,
       avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLoW3SYolC4CqVUO8mwFZl-GLg0bKTDZkJ7g&usqp=CAU',
    },
+   profile : null
 };
 
 const ADD_NEW_POST_REDUSER = (state = initialState, action) => {
@@ -43,6 +46,10 @@ const ADD_NEW_POST_REDUSER = (state = initialState, action) => {
             ...state,
             newTextPost : action.text,
          }
+      }
+
+      case SET_PROFILE_USER: {
+         return { ...state, profile: action.profile }
       }
 
       default:

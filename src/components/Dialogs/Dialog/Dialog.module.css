@@ -1,5 +1,5 @@
 .dialog {
-   border: 1px solid var(--color-blue-light);
+   border: var(--div-blue-light);
    border-radius: var(--radius);
    margin-bottom: 10px;
 }

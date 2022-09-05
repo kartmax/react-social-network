@@ -1,0 +1,81 @@
+.users_wrap {
+   padding: 15px;
+}
+
+.users_list {
+
+}
+
+.users_item {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+   flex-wrap: wrap;
+   border: var(--div-blue-light);
+   border-radius: var(--radius);
+   padding: 10px;
+}
+.users_item + .users_item {
+   margin-top: 15px;
+}
+
+.body {
+   display: flex;
+}
+
+.avatar {
+   --size: 80px;
+   width: var(--size);
+   height: var(--size);
+   border-radius: 50%;
+   overflow: hidden;
+}
+
+.info_wrap {
+   padding-left: 15px;
+}
+.name {
+   font-weight: 700;
+}
+.location {
+
+}
+.status {
+   font-style: italic;
+}
+
+
+.pagination {
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: flex-start;
+   gap: 10px;
+   width: 500px;
+   overflow-x: scroll;
+   padding: 15px 0;
+   margin-bottom: 15px;     
+   margin-left: auto;
+   margin-right: auto;
+}
+.pagination li {
+   border-radius: 50%;
+   border: var(--div-blue-light);
+   padding: 5px;
+   min-width: 30px;
+   max-width: 50px;
+   min-height: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   cursor: pointer;
+}
+.pagination li:hover {
+   background-image: var(--gradient-active);
+   color: #fff;
+}
+.currentPagination {
+   font-weight: 700;
+   background-image: var(--gradient);
+   color: #fff;      
+}

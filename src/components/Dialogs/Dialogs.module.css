@@ -1,4 +1,5 @@
 .dialogs_wrap {
+   --size-dialogs: 190px;
    display: flex;
    flex-wrap: wrap;
    position: relative;
@@ -6,7 +7,7 @@
 
 .dialogs {
    position: relative;
-   flex: 0 0 20%;
+   width: var(--size-dialogs);
 }
 .dialogs::before {
    content: '';
@@ -30,7 +31,7 @@
 }
 
 .messages {
-   flex: 0 0 80%;
+   width: calc(100% - var(--size-dialogs));
    max-height: 350px;
    overflow-y: auto;
 }

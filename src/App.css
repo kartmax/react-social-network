@@ -4,10 +4,13 @@
    --color-gray-light: #f0f0f0;
    --gradient: linear-gradient(#56b6f8, #4ca1dc);
    --gradient-active: linear-gradient(#4ca1dc, #56b6f8);
+   --gradient-unfollowed: linear-gradient(#F24E4E, #B34141);
+   --gradient-unfollowed-active: linear-gradient(#B34141, #F24E4E);
    --color-text: #333;
    --color-text-light: #fff;
 
    --div-light: 1px solid rgba(255, 255, 255, .2);
+   --div-blue-light: 1px solid var(--color-blue-light);
 
    --radius: 5px;
 
@@ -29,7 +32,8 @@ body {
 }
 
 .main {
-   flex: 1 1 calc(80% - 15px);
+   position: relative;
+   width: calc(80% - 15px);
    background-color: var(--color-gray-light);
    color: var(--color-text);
 }
@@ -74,8 +78,17 @@ textarea:focus {
    background: var(--gradient-active);
 }
 
+.main_btn.unfollowed {
+   background: var(--gradient-unfollowed);
+}
+.main_btn.unfollowed:hover {
+   background: var(--gradient-unfollowed-active);
+}
+
 .sidebar-group-title {
    margin-top: 5px;
    margin-bottom: 5px;
    text-align: center;  
 }
+
+

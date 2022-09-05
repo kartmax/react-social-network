@@ -1,8 +1,8 @@
 const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
 const CHANGE_NEW_MESSAGE = 'CHANGE-NEW-MESSAGE';
 
-export const addNewMessageCreateAction = () => ({ type: ADD_NEW_MESSAGE });
-export const changeNewMessageCreateAction = (text) => ({ type: CHANGE_NEW_MESSAGE, text: text });
+export const addNewMessageAC = () => ({ type: ADD_NEW_MESSAGE });
+export const changeNewMessageAC = (text) => ({ type: CHANGE_NEW_MESSAGE, text: text });
 
 let initialState = {
    dialogData: [

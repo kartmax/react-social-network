@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'; 
 import styles from './NewPost.module.css';
 
 const NewPost = (props) => {
    let textareaRef = React.createRef();
 
    const onAddNewPost = () => {
-      props.addNewPost();
+      props.addNewPostAC();
    };
 
    const onUpdateTextPost = () => {
       const text = textareaRef.current.value;
-      props.updateTextPost(text);
+      props.updateTextPostAC(text);
    };
 
    return (

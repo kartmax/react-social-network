@@ -6,13 +6,13 @@ const NewMessage = (props) => {
    let textareaRef = React.createRef();
 
    const onAddNewMessage = () => {
-      props.addNewMessage();
+      props.addNewMessageAC();
       scrollToLastMessage();
    }
 
    const onChangeNewMessage = () => {
       let text = textareaRef.current.value;
-      props.changeNewMessage(text);
+      props.changeNewMessageAC(text);
    }
 
    const scrollToLastMessage = () => {

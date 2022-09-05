@@ -1,6 +1,6 @@
-import ADD_NEW_POST_REDUSER from './profile-reducer';
-import ADD_NEW_MESSAGE_REDUSER from './messages-reduser';
-import SIDEBAR_REDUSER from './sidebar-reduser';
+import ADD_NEW_POST_REDUSER from '../profile-reducer';
+import ADD_NEW_MESSAGE_REDUSER from '../messages-reduser';
+import SIDEBAR_REDUSER from '../sidebar-reduser';
 
 let store = {
    _rerenderAll() { },
