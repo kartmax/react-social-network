@@ -6,6 +6,7 @@
    margin-top: 15px;
    margin-bottom: 15px;
    display: flex;
+   justify-content: space-between;
    align-items: center;
    padding: 10px 15px;
 }
@@ -46,4 +47,20 @@
    font-weight: 300;
    font-size: .85rem;
    font-style: italic;
+}
+
+.loginWrap {
+
+}
+.login_link {
+   color: #fff;
+   text-decoration: none;
+   border: 1px solid #fff;
+   padding: 15px 10px;
+   border-radius: 10px;
+   font-weight: 700;
+}
+.login_link:hover {
+   background-color: #fff;
+   color: var(--color-blue-light);
 }

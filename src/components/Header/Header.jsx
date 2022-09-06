@@ -1,6 +1,7 @@
 import styles from './Header.module.css';
+import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = (props) => {
    return (
       <header className={styles.header}>
          <div className={styles.logo}>
@@ -11,6 +12,9 @@ const Header = () => {
                <p>Social Network</p>
                <span>Chat, meet, make friends</span>
             </div>
+         </div>
+         <div className={styles.loginWrap}>
+            {props.isAuth ? `${props.login} - ${props.id}` : <NavLink to='/login' className={styles.login_link}>Login</NavLink>}
          </div>
       </header>
    )
