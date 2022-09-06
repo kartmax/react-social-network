@@ -23,7 +23,8 @@ function App(props) {
             <Navbar />
             <main className="main">
                <Routes>
-                  <Route path='/profile/*' element = {<ProfileConstainer />} />
+                  <Route path='/profile/' element = {<ProfileConstainer />} />
+                  <Route path='/profile/:userId' element = {<ProfileConstainer />} />
                   <Route path='/dialogs/*' element = {<DialogsContainer />} />
                   <Route path='users' element = {<UsersContainer />} />
                   <Route path='/news' element = {<News />} />

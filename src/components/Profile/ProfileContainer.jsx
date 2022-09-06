@@ -4,6 +4,11 @@ import * as axios from "axios";
 import { connect } from "react-redux";
 import { setProfileUserAC } from "../../redux/reducers/profile-reducer";
 import Preloader from "../global/Preloader/Preloader";
+import {
+   // useLocation,
+   // useNavigate,
+   useParams,
+} from "react-router-dom";
 
 
 let mapStateToProps = (state) => {
@@ -17,9 +22,12 @@ let mapDispatchToProps = {
 }
 
 class ProfileApiConstainer extends React.Component {
-
    componentDidMount () {
-      let urlApiUsers = `https://social-network.samuraijs.com/api/1.0/profile/2`;
+      let userId = this.props.router.params.userId;
+      if(!userId) {
+         userId = 2;
+      }
+      let urlApiUsers = `https://social-network.samuraijs.com/api/1.0/profile/${userId}`;
       axios
          .get(urlApiUsers)
          .then(response => {
@@ -36,6 +44,23 @@ class ProfileApiConstainer extends React.Component {
    }
 }
 
-let ProfileConstainer = connect(mapStateToProps, mapDispatchToProps)(ProfileApiConstainer);
+function withRouter(Component) {
+   function ComponentWithRouterProp(props) {
+      //  let location = useLocation();
+      //  let navigate = useNavigate();
+       let params = useParams();
+       return (
+           <Component
+               {...props}
+               // router={{ location, navigate, params }}
+               router={{ params }}
+           />
+       );
+   }
+   return ComponentWithRouterProp;
+}
+withRouter(ProfileApiConstainer);
+
+let ProfileConstainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileApiConstainer));
 
 export default ProfileConstainer;
