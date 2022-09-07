@@ -1,58 +1,53 @@
 import * as axios from 'axios';
 
 
-const baseUrlApi = "https://social-network.samuraijs.com/api/1.0",
-      apiKey = '2117729b-7213-45c3-bfdf-cc0c21228ca9';
+const instansAxios = axios.create({
+   baseURL : "https://social-network.samuraijs.com/api/1.0",
+   withCredentials: true,
+   headers : {
+      "API-KEY" : "2117729b-7213-45c3-bfdf-cc0c21228ca9"
+   }
+})
 
 export const getUsers = (pageSize, currentPage) => {
-   let urlApiUsers = `${baseUrlApi}/users?count=${pageSize}&page=${currentPage}`;
-   return axios
-            .get(urlApiUsers, { withCredentials: true })
+   let urlApiUsers = `/users?count=${pageSize}&page=${currentPage}`;
+   return instansAxios
+            .get(urlApiUsers)
             .then(response => {
                return response.data;
             })
 }
 
 export const follow = (userId) => {
-   let urlFollow = `${baseUrlApi}/follow/${userId}`;
-   return axios
-      .delete(urlFollow, { 
-         withCredentials: true,
-         headers : {
-            "API-KEY" : apiKey
-         }
-      })
+   let urlFollow = `/follow/${userId}`;
+   return instansAxios
+      .delete(urlFollow)
       .then(response => {
          return response.data
       })
 }
 
 export const unfollow = (userId) => {
-   let urlFollow = `${baseUrlApi}/follow/${userId}`;
-   return axios
-      .post(urlFollow, {}, { 
-         withCredentials: true,
-         headers : {
-            "API-KEY" : apiKey
-         }
-      })
+   let urlFollow = `/follow/${userId}`;
+   return instansAxios
+      .post(urlFollow)
       .then(response => {
          return response.data
       })
 }
 
 export const authMe = () => {
-   let url = `${baseUrlApi}/auth/me`;
-   return axios
-            .get(url, { withCredentials: true })
+   let url = `/auth/me`;
+   return instansAxios
+            .get(url)
             .then(response => {
                return response.data
             })
 }
 
 export const profileUser = (userId) => {
-   let urlApiUsers = `${baseUrlApi}/profile/${userId}`;
-   return axios
+   let urlApiUsers = `/profile/${userId}`;
+   return instansAxios
             .get(urlApiUsers)
             .then(response => {
                return response.data
