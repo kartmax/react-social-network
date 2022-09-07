@@ -35,7 +35,7 @@ class UsersApiContainer extends React.Component {
       let urlApiUsers = `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`;
 
       axios
-         .get(urlApiUsers)
+         .get(urlApiUsers, { withCredentials: true })
          .then(response => {
             this.props.setPreloaderAC(false);
             this.props.setUsersAC(response.data.items);
@@ -49,7 +49,7 @@ class UsersApiContainer extends React.Component {
       let urlApiUsers = `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`;
 
       axios
-         .get(urlApiUsers)
+         .get(urlApiUsers, { withCredentials: true })
          .then(response => {
             this.props.setPreloaderAC(false);
             this.props.setUsersAC(response.data.items);
