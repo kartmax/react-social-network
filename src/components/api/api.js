@@ -49,3 +49,12 @@ export const authMe = () => {
                return response.data
             })
 }
+
+export const profileUser = (userId) => {
+   let urlApiUsers = `${baseUrlApi}/profile/${userId}`;
+   return axios
+            .get(urlApiUsers)
+            .then(response => {
+               return response.data
+            })
+}

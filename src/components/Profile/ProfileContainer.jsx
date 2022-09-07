@@ -1,6 +1,5 @@
 import React from "react";
 import Profile from "./Profile";
-import * as axios from "axios";
 import { connect } from "react-redux";
 import { setProfileUserAC } from "../../redux/reducers/profile-reducer";
 import Preloader from "../global/Preloader/Preloader";
@@ -9,6 +8,7 @@ import {
    // useNavigate,
    useParams,
 } from "react-router-dom";
+import { profileUser } from '../api/api';
 
 
 let mapStateToProps = (state) => {
@@ -27,12 +27,9 @@ class ProfileApiConstainer extends React.Component {
       if(!userId) {
          userId = 2;
       }
-      let urlApiUsers = `https://social-network.samuraijs.com/api/1.0/profile/${userId}`;
-      axios
-         .get(urlApiUsers)
-         .then(response => {
-            this.props.setProfileUserAC(response.data)
-         });
+      profileUser(userId).then(data => {
+                              this.props.setProfileUserAC(data)
+                           });
    }
 
    render () {
