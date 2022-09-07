@@ -1,8 +1,7 @@
 import styles from './Users.module.css';
 import defaultUserAvatar from '../../assets/images/avatar.png';
 import { NavLink } from 'react-router-dom';
-import * as axios from 'axios';
-import { follow, unfollow } from '../api/api';
+import { UserAPI } from '../api/api';
 
 const Users = (props) => {
    let followClass = (followed) => {
@@ -17,13 +16,13 @@ const Users = (props) => {
       let userFollowed = e.target.getAttribute('data-user-followed');
 
       if(userFollowed == 'true') {
-         follow(userId).then(data => {
+         UserAPI.follow(userId).then(data => {
             if(data.resultCode == 0) {
                props.unfollowAC(userId)
             }
          })
       } else {
-         unfollow(userId).then(data => {
+         UserAPI.unfollow(userId).then(data => {
             if(data.resultCode == 0) { 
                props.followAC(userId)  
             }

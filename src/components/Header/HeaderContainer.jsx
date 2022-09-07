@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
 import { setAuthUserDataAC } from '../../redux/reducers/auth-reducer';
-import { authMe } from '../api/api';
+import { UserAPI } from '../api/api';
 
 const mapStateToProps = (state) => {
    return {
@@ -17,7 +17,7 @@ const mapDispatchToProps = {
 
 class HeaderApiContainer extends React.Component {
    componentDidMount () {
-      authMe().then(data => {
+      UserAPI.authMe().then(data => {
                   if (data.resultCode === 0) {
                      let {id, email, login} = data.data;
                      this.props.setAuthUserDataAC(id, email, login);

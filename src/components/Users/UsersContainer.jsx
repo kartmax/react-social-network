@@ -9,7 +9,7 @@ import React from "react";
 import * as axios from 'axios';
 import Users from "./Users";
 import Preloader from "../global/Preloader/Preloader";
-import {getUsers} from "../api/api";
+import { UserAPI } from "../api/api";
 
 const mapStateToProps = (state) => {
    return {
@@ -34,7 +34,7 @@ class UsersApiContainer extends React.Component {
    componentDidMount () {
       this.props.setPreloaderAC(true);
 
-      getUsers(this.props.pageSize, this.props.currentPage).then(data => {
+      UserAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
             this.props.setPreloaderAC(false);
             this.props.setUsersAC(data.items);
             this.props.setTotalUsersAC(data.totalCount);
@@ -45,7 +45,7 @@ class UsersApiContainer extends React.Component {
       this.props.setPreloaderAC(true);
       this.props.setCurrentPageAC(pageNumber)
 
-      getUsers(this.props.pageSize, pageNumber).then(data => {
+      UserAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
          this.props.setPreloaderAC(false);
          this.props.setUsersAC(data.items);
       });

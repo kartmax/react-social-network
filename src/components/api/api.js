@@ -9,47 +9,50 @@ const instansAxios = axios.create({
    }
 })
 
-export const getUsers = (pageSize, currentPage) => {
-   let urlApiUsers = `/users?count=${pageSize}&page=${currentPage}`;
-   return instansAxios
-            .get(urlApiUsers)
-            .then(response => {
-               return response.data;
-            })
-}
+export const UserAPI = {
+   getUsers : (pageSize, currentPage) => {
+      let urlApiUsers = `/users?count=${pageSize}&page=${currentPage}`;
+      return instansAxios
+               .get(urlApiUsers)
+               .then(response => {
+                  return response.data;
+               })
+   },
+   
+   follow : (userId) => {
+      let urlFollow = `/follow/${userId}`;
+      return instansAxios
+         .delete(urlFollow)
+         .then(response => {
+            return response.data
+         })
+   },
+   
+  unfollow : (userId) => {
+      let urlFollow = `/follow/${userId}`;
+      return instansAxios
+         .post(urlFollow)
+         .then(response => {
+            return response.data
+         })
+   },
+   
+   authMe : () => {
+      let url = `/auth/me`;
+      return instansAxios
+               .get(url)
+               .then(response => {
+                  return response.data
+               })
+   },
+   
+   profileUser : (userId) => {
+      let urlApiUsers = `/profile/${userId}`;
+      return instansAxios
+               .get(urlApiUsers)
+               .then(response => {
+                  return response.data
+               })
+   }
 
-export const follow = (userId) => {
-   let urlFollow = `/follow/${userId}`;
-   return instansAxios
-      .delete(urlFollow)
-      .then(response => {
-         return response.data
-      })
-}
-
-export const unfollow = (userId) => {
-   let urlFollow = `/follow/${userId}`;
-   return instansAxios
-      .post(urlFollow)
-      .then(response => {
-         return response.data
-      })
-}
-
-export const authMe = () => {
-   let url = `/auth/me`;
-   return instansAxios
-            .get(url)
-            .then(response => {
-               return response.data
-            })
-}
-
-export const profileUser = (userId) => {
-   let urlApiUsers = `/profile/${userId}`;
-   return instansAxios
-            .get(urlApiUsers)
-            .then(response => {
-               return response.data
-            })
 }

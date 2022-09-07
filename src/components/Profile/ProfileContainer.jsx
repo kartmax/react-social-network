@@ -8,7 +8,7 @@ import {
    // useNavigate,
    useParams,
 } from "react-router-dom";
-import { profileUser } from '../api/api';
+import { UserAPI } from '../api/api';
 
 
 let mapStateToProps = (state) => {
@@ -27,7 +27,7 @@ class ProfileApiConstainer extends React.Component {
       if(!userId) {
          userId = 2;
       }
-      profileUser(userId).then(data => {
+      UserAPI.profileUser(userId).then(data => {
                               this.props.setProfileUserAC(data)
                            });
    }
