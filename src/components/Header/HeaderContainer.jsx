@@ -3,6 +3,7 @@ import Header from './Header';
 import * as axios from 'axios';
 import { connect } from 'react-redux';
 import { setAuthUserDataAC } from '../../redux/reducers/auth-reducer';
+import { authMe } from '../api/api';
 
 const mapStateToProps = (state) => {
    return {
@@ -17,15 +18,12 @@ const mapDispatchToProps = {
 
 class HeaderApiContainer extends React.Component {
    componentDidMount () {
-      let url = 'https://social-network.samuraijs.com/api/1.0/auth/me';
-      axios
-         .get(url, { withCredentials: true })
-         .then(response => {
-            if (response.data.resultCode === 0) {
-               let {id, email, login} = response.data.data;
-               this.props.setAuthUserDataAC(id, email, login);
-            }
-         })
+      authMe().then(data => {
+                  if (data.resultCode === 0) {
+                     let {id, email, login} = data.data;
+                     this.props.setAuthUserDataAC(id, email, login);
+                  }
+               })
    }
    render () {
       return (

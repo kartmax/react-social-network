@@ -9,6 +9,7 @@ import React from "react";
 import * as axios from 'axios';
 import Users from "./Users";
 import Preloader from "../global/Preloader/Preloader";
+import {getUsers} from "../api/api";
 
 const mapStateToProps = (state) => {
    return {
@@ -32,28 +33,22 @@ const mapDispatchToProps = {
 class UsersApiContainer extends React.Component {
    componentDidMount () {
       this.props.setPreloaderAC(true);
-      let urlApiUsers = `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`;
 
-      axios
-         .get(urlApiUsers, { withCredentials: true })
-         .then(response => {
+      getUsers(this.props.pageSize, this.props.currentPage).then(data => {
             this.props.setPreloaderAC(false);
-            this.props.setUsersAC(response.data.items);
-            this.props.setTotalUsersAC(response.data.totalCount);
+            this.props.setUsersAC(data.items);
+            this.props.setTotalUsersAC(data.totalCount);
          });
    }
 
    onChangePage = (pageNumber) => {
       this.props.setPreloaderAC(true);
       this.props.setCurrentPageAC(pageNumber)
-      let urlApiUsers = `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`;
 
-      axios
-         .get(urlApiUsers, { withCredentials: true })
-         .then(response => {
-            this.props.setPreloaderAC(false);
-            this.props.setUsersAC(response.data.items);
-         });
+      getUsers(this.props.pageSize, pageNumber).then(data => {
+         this.props.setPreloaderAC(false);
+         this.props.setUsersAC(data.items);
+      });
    }
 
    render() {

@@ -2,6 +2,7 @@ import styles from './Users.module.css';
 import defaultUserAvatar from '../../assets/images/avatar.png';
 import { NavLink } from 'react-router-dom';
 import * as axios from 'axios';
+import { follow, unfollow } from '../api/api';
 
 const Users = (props) => {
    let followClass = (followed) => {
@@ -15,35 +16,18 @@ const Users = (props) => {
       let userId = e.target.getAttribute('data-user-id');
       let userFollowed = e.target.getAttribute('data-user-followed');
 
-      let urlFollow = `https://social-network.samuraijs.com/api/1.0/follow/${userId}`;
-      let apiKey = '2117729b-7213-45c3-bfdf-cc0c21228ca9';
-
       if(userFollowed == 'true') {
-         axios
-            .delete(urlFollow, { 
-               withCredentials: true,
-               headers : {
-                  "API-KEY" : apiKey
-               }
-            })
-            .then(response => {
-               if(response.data.resultCode == 0) {
-                  props.unfollowAC(userId)
-               }
-            })
+         follow(userId).then(data => {
+            if(data.resultCode == 0) {
+               props.unfollowAC(userId)
+            }
+         })
       } else {
-         axios
-            .post(urlFollow, {}, { 
-               withCredentials: true,
-               headers : {
-                  "API-KEY" : apiKey
-               }
-            })
-            .then(response => {
-               if(response.data.resultCode == 0) { 
-                  props.followAC(userId)  
-               }
-            })
+         unfollow(userId).then(data => {
+            if(data.resultCode == 0) { 
+               props.followAC(userId)  
+            }
+         })
       }
    }
 
