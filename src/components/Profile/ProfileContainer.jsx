@@ -56,7 +56,6 @@ function withRouter(Component) {
    }
    return ComponentWithRouterProp;
 }
-withRouter(ProfileApiConstainer);
 
 let ProfileConstainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileApiConstainer));
 

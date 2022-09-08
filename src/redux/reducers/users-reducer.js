@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS = 'SET_TOTAL_USERS';
 const SET_PRELOADER = 'SET_PRELOADER';
+const SET_DISABLED_BTN = 'SET_DISABLED_BTN';
 
 export const followAC = (userId) => ({ type : FOLLOW, userId : userId });
 export const unfollowAC = (userId) => ({ type : UNFOLLOW, userId : userId });
@@ -11,6 +12,7 @@ export const setUsersAC = (users) => ({ type : SET_USERS, users : users });
 export const setCurrentPageAC = (idxPage) => ({ type : SET_CURRENT_PAGE, idxPage : idxPage });
 export const setTotalUsersAC = (totalUsers) => ({ type : SET_TOTAL_USERS, totalUsers : totalUsers });
 export const setPreloaderAC = (isPreloader) => ({ type : SET_PRELOADER, isPreloader : isPreloader });
+export const setDisabledBtnAC = (bool, userId) => ({ type: SET_DISABLED_BTN, isDisabledBtn : bool, userId : userId });
 
 let initialState = {
    users: [
@@ -21,7 +23,8 @@ let initialState = {
    pageSize: 20,
    totalUsersCount: 0,
    currentPage: 1,
-   isPreloader: false
+   isPreloader: false,
+   isDisabledBtn: [],
 };
 
 const USERS_REDUSER = (state = initialState, action) => {
@@ -62,6 +65,13 @@ const USERS_REDUSER = (state = initialState, action) => {
 
       case SET_PRELOADER: {
          return{ ...state, isPreloader: action.isPreloader };
+      }
+
+      case SET_DISABLED_BTN: {
+         return{ ...state, isDisabledBtn : action.isDisabledBtn
+            ? [...state.isDisabledBtn, action.userId]
+            : state.isDisabledBtn.filter(id => id != action.userId)
+         }
       }
 
       default: return state;

@@ -4,9 +4,9 @@ import { followAC,
          unfollowAC, 
          setCurrentPageAC, 
          setTotalUsersAC, 
-         setPreloaderAC } from "../../redux/reducers/users-reducer";
+         setPreloaderAC,
+         setDisabledBtnAC } from "../../redux/reducers/users-reducer";
 import React from "react";
-import * as axios from 'axios';
 import Users from "./Users";
 import Preloader from "../global/Preloader/Preloader";
 import { UserAPI } from "../api/api";
@@ -17,7 +17,8 @@ const mapStateToProps = (state) => {
       pageSize: state.USERS_REDUSER.pageSize,
       totalUsersCount: state.USERS_REDUSER.totalUsersCount,
       currentPage: state.USERS_REDUSER.currentPage,
-      isPreloader: state.USERS_REDUSER.isPreloader
+      isPreloader: state.USERS_REDUSER.isPreloader,
+      isDisabledBtn: state.USERS_REDUSER.isDisabledBtn
    };
 };
 
@@ -28,6 +29,7 @@ const mapDispatchToProps = {
    setCurrentPageAC,
    setTotalUsersAC,
    setPreloaderAC,
+   setDisabledBtnAC
 };
 
 class UsersApiContainer extends React.Component {
@@ -58,6 +60,8 @@ class UsersApiContainer extends React.Component {
             <Users 
                followAC={this.props.followAC}
                unfollowAC={this.props.unfollowAC}
+               isDisabledBtn={this.props.isDisabledBtn}
+               setDisabledBtnAC={this.props.setDisabledBtnAC}
                totalUsersCount={this.props.totalUsersCount} 
                pageSize={this.props.pageSize}
                onChangePage={this.onChangePage}
