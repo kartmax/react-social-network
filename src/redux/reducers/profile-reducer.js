@@ -8,12 +8,10 @@ export const addNewPostAC = () => ({ type: ADD_NEW_POST });
 export const updateTextPostAC = (text) => ({ type: UPDATE_TEXT_POST, text: text });
 export const setProfileUserAC = (profile) => ({ type: SET_PROFILE_USER, profile: profile });
 
-export const getProfileUserTC = (userId) => {
-   return (dispatch) => {
-      UserAPI.profileUser(userId).then(data => {
-                              dispatch(setProfileUserAC(data))
-                           });
-   }
+export const getProfileUserTC = (userId) => (dispatch) => {
+   UserAPI.profileUser(userId).then(data => {
+                           dispatch(setProfileUserAC(data))
+                        });
 }
 
 let initialState = {

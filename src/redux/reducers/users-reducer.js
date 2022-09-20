@@ -17,48 +17,42 @@ export const setPreloaderAC = (isPreloader) => ({ type : SET_PRELOADER, isPreloa
 export const setDisabledBtnAC = (bool, userId) => ({ type: SET_DISABLED_BTN, isDisabledBtn : bool, userId : userId });
 
 // ThunkCreators
-export const getUsersTC = (pageSize, currentPage) => {
-   return (dispatch) => {
-      dispatch(setPreloaderAC(true));
+export const getUsersTC = (pageSize, currentPage) => (dispatch) => {
+   dispatch(setPreloaderAC(true));
 
-      UserAPI.getUsers(pageSize, currentPage).then(data => {
-            dispatch(setPreloaderAC(false));
-            dispatch(setUsersAC(data.items));
-            dispatch(setTotalUsersAC(data.totalCount));
-         });
-   }
-}
-export const changePageTC = (pageSize, pageNumber) => {
-   return (dispatch) => {
-      dispatch(setPreloaderAC(true))
-      dispatch(setCurrentPageAC(pageNumber))
-
-      UserAPI.getUsers(pageSize, pageNumber).then(data => {
+   UserAPI.getUsers(pageSize, currentPage).then(data => {
          dispatch(setPreloaderAC(false));
          dispatch(setUsersAC(data.items));
+         dispatch(setTotalUsersAC(data.totalCount));
       });
-   }
+}
+export const changePageTC = (pageSize, pageNumber) => (dispatch) => {
+   dispatch(setPreloaderAC(true))
+   dispatch(setCurrentPageAC(pageNumber))
+
+   UserAPI.getUsers(pageSize, pageNumber).then(data => {
+      dispatch(setPreloaderAC(false));
+      dispatch(setUsersAC(data.items));
+   });
 }
 
-export const onFollowTC = (userFollowed, userId) => {
-   return (dispatch) => {
-      dispatch(setDisabledBtnAC(true, userId))
+export const onFollowTC = (userFollowed, userId) => (dispatch) => {
+   dispatch(setDisabledBtnAC(true, userId))
 
-      if(userFollowed === 'true') {
-         UserAPI.follow(userId).then(data => {
-            if(data.resultCode === 0) {
-               dispatch(unfollowAC(userId))
-               dispatch(setDisabledBtnAC(false, userId))
-            }
-         })
-      } else {
-         UserAPI.unfollow(userId).then(data => {
-            if(data.resultCode === 0) { 
-               dispatch(followAC(userId))
-               dispatch(setDisabledBtnAC(false, userId))
-            }
-         })
-      }
+   if(userFollowed === 'true') {
+      UserAPI.follow(userId).then(data => {
+         if(data.resultCode === 0) {
+            dispatch(unfollowAC(userId))
+            dispatch(setDisabledBtnAC(false, userId))
+         }
+      })
+   } else {
+      UserAPI.unfollow(userId).then(data => {
+         if(data.resultCode === 0) { 
+            dispatch(followAC(userId))
+            dispatch(setDisabledBtnAC(false, userId))
+         }
+      })
    }
 }
 
