@@ -1,15 +1,8 @@
 import { connect } from "react-redux";
-import { followAC, 
-         setUsersAC, 
-         unfollowAC, 
-         setCurrentPageAC, 
-         setTotalUsersAC, 
-         setPreloaderAC,
-         setDisabledBtnAC } from "../../redux/reducers/users-reducer";
+import { getUsersTC, changePageTC, onFollowTC } from "../../redux/reducers/users-reducer";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../global/Preloader/Preloader";
-import { UserAPI } from "../api/api";
 
 const mapStateToProps = (state) => {
    return {
@@ -23,34 +16,18 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-   followAC,
-   unfollowAC,
-   setUsersAC,
-   setCurrentPageAC,
-   setTotalUsersAC,
-   setPreloaderAC,
-   setDisabledBtnAC
+   getUsersTC,
+   changePageTC,
+   onFollowTC
 };
 
 class UsersApiContainer extends React.Component {
    componentDidMount () {
-      this.props.setPreloaderAC(true);
-
-      UserAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
-            this.props.setPreloaderAC(false);
-            this.props.setUsersAC(data.items);
-            this.props.setTotalUsersAC(data.totalCount);
-         });
+      this.props.getUsersTC(this.props.pageSize, this.props.currentPage);
    }
 
    onChangePage = (pageNumber) => {
-      this.props.setPreloaderAC(true);
-      this.props.setCurrentPageAC(pageNumber)
-
-      UserAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
-         this.props.setPreloaderAC(false);
-         this.props.setUsersAC(data.items);
-      });
+      this.props.changePageTC(this.props.pageSize, pageNumber)
    }
 
    render() {
@@ -58,15 +35,13 @@ class UsersApiContainer extends React.Component {
          <>
             { this.props.isPreloader ? <Preloader /> : null }    
             <Users 
-               followAC={this.props.followAC}
-               unfollowAC={this.props.unfollowAC}
                isDisabledBtn={this.props.isDisabledBtn}
-               setDisabledBtnAC={this.props.setDisabledBtnAC}
                totalUsersCount={this.props.totalUsersCount} 
                pageSize={this.props.pageSize}
                onChangePage={this.onChangePage}
                currentPage={this.props.currentPage}
                users={this.props.users}
+               onFollowTC={this.props.onFollowTC}
             />
          </>
       )

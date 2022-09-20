@@ -1,14 +1,13 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import { setProfileUserAC } from "../../redux/reducers/profile-reducer";
+import { getProfileUserTC } from "../../redux/reducers/profile-reducer";
 import Preloader from "../global/Preloader/Preloader";
 import {
    // useLocation,
    // useNavigate,
    useParams,
 } from "react-router-dom";
-import { UserAPI } from '../api/api';
 
 
 let mapStateToProps = (state) => {
@@ -17,9 +16,7 @@ let mapStateToProps = (state) => {
  }
 }
 
-let mapDispatchToProps = {
-   setProfileUserAC
-}
+let mapDispatchToProps = {getProfileUserTC}
 
 class ProfileApiConstainer extends React.Component {
    componentDidMount () {
@@ -27,9 +24,7 @@ class ProfileApiConstainer extends React.Component {
       if(!userId) {
          userId = 2;
       }
-      UserAPI.profileUser(userId).then(data => {
-                              this.props.setProfileUserAC(data)
-                           });
+      this.props.getProfileUserTC(userId);
    }
 
    render () {

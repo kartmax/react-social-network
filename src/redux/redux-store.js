@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import thunkMiddleWare from "redux-thunk";
 
 import ADD_NEW_POST_REDUSER from './reducers/profile-reducer';
 import ADD_NEW_MESSAGE_REDUSER from './reducers/messages-reducer';
@@ -15,6 +16,6 @@ let redusers = combineReducers({
    AUTH_REDUSER
 });
 
-let store = createStore(redusers);
+let store = createStore(redusers, applyMiddleware(thunkMiddleWare));
 
 export default store;

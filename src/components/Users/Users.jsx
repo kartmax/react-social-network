@@ -1,7 +1,6 @@
 import styles from './Users.module.css';
 import defaultUserAvatar from '../../assets/images/avatar.png';
 import { NavLink } from 'react-router-dom';
-import { UserAPI } from '../api/api';
 
 const Users = (props) => {
    let followClass = (followed) => {
@@ -14,23 +13,8 @@ const Users = (props) => {
    let onFollow = (e) => {
       let userId = e.target.getAttribute('data-user-id');
       let userFollowed = e.target.getAttribute('data-user-followed');
-      props.setDisabledBtnAC(true, userId)
 
-      if(userFollowed == 'true') {
-         UserAPI.follow(userId).then(data => {
-            if(data.resultCode == 0) {
-               props.unfollowAC(userId)
-               props.setDisabledBtnAC(false, userId)
-            }
-         })
-      } else {
-         UserAPI.unfollow(userId).then(data => {
-            if(data.resultCode == 0) { 
-               props.followAC(userId)  
-               props.setDisabledBtnAC(false, userId)
-            }
-         })
-      }
+      props.onFollowTC(userFollowed, userId);
    }
 
    let counterPagination = Math.ceil(props.totalUsersCount / props.pageSize); 
@@ -52,7 +36,7 @@ const Users = (props) => {
                   <div className={styles.body}>
                      <div className={styles.avatar}>
                         <NavLink to={`/profile/${user.id}`}>
-                           <img src={user.photos.small != null ? user.photos.small : defaultUserAvatar} alt="Photo user" />
+                           <img src={user.photos.small !== null ? user.photos.small : defaultUserAvatar} alt="img user" />
                         </NavLink>
                      </div>
                      <div className={styles.info_wrap}>
@@ -61,7 +45,7 @@ const Users = (props) => {
                         <p className={styles.status}>{user.status}</p>
                      </div>
                   </div>
-                  <button onClick={onFollow} disabled={props.isDisabledBtn.some(id => id==user.id)} className={`main_btn ${followClass(user.followed).class_name}`} data-user-id={user.id} data-user-followed={user.followed}>{followClass(user.followed).text_btn}</button>
+                  <button onClick={onFollow} disabled={props.isDisabledBtn.some(id => id===user.id)} className={`main_btn ${followClass(user.followed).class_name}`} data-user-id={user.id} data-user-followed={user.followed}>{followClass(user.followed).text_btn}</button>
                </li>
             )}
          </ul>

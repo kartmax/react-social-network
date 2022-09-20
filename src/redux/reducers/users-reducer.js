@@ -1,3 +1,5 @@
+import { UserAPI } from "../../components/api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -13,6 +15,52 @@ export const setCurrentPageAC = (idxPage) => ({ type : SET_CURRENT_PAGE, idxPage
 export const setTotalUsersAC = (totalUsers) => ({ type : SET_TOTAL_USERS, totalUsers : totalUsers });
 export const setPreloaderAC = (isPreloader) => ({ type : SET_PRELOADER, isPreloader : isPreloader });
 export const setDisabledBtnAC = (bool, userId) => ({ type: SET_DISABLED_BTN, isDisabledBtn : bool, userId : userId });
+
+// ThunkCreators
+export const getUsersTC = (pageSize, currentPage) => {
+   return (dispatch) => {
+      dispatch(setPreloaderAC(true));
+
+      UserAPI.getUsers(pageSize, currentPage).then(data => {
+            dispatch(setPreloaderAC(false));
+            dispatch(setUsersAC(data.items));
+            dispatch(setTotalUsersAC(data.totalCount));
+         });
+   }
+}
+export const changePageTC = (pageSize, pageNumber) => {
+   return (dispatch) => {
+      dispatch(setPreloaderAC(true))
+      dispatch(setCurrentPageAC(pageNumber))
+
+      UserAPI.getUsers(pageSize, pageNumber).then(data => {
+         dispatch(setPreloaderAC(false));
+         dispatch(setUsersAC(data.items));
+      });
+   }
+}
+
+export const onFollowTC = (userFollowed, userId) => {
+   return (dispatch) => {
+      dispatch(setDisabledBtnAC(true, userId))
+
+      if(userFollowed === 'true') {
+         UserAPI.follow(userId).then(data => {
+            if(data.resultCode === 0) {
+               dispatch(unfollowAC(userId))
+               dispatch(setDisabledBtnAC(false, userId))
+            }
+         })
+      } else {
+         UserAPI.unfollow(userId).then(data => {
+            if(data.resultCode === 0) { 
+               dispatch(followAC(userId))
+               dispatch(setDisabledBtnAC(false, userId))
+            }
+         })
+      }
+   }
+}
 
 let initialState = {
    users: [
@@ -70,7 +118,7 @@ const USERS_REDUSER = (state = initialState, action) => {
       case SET_DISABLED_BTN: {
          return{ ...state, isDisabledBtn : action.isDisabledBtn
             ? [...state.isDisabledBtn, action.userId]
-            : state.isDisabledBtn.filter(id => id != action.userId)
+            : state.isDisabledBtn.filter(id => id !== action.userId)
          }
       }
 

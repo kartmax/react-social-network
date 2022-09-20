@@ -1,3 +1,5 @@
+import { UserAPI } from "../../components/api/api";
+
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const SET_PROFILE_USER = 'SET_PROFILE_USER';
@@ -5,6 +7,14 @@ const SET_PROFILE_USER = 'SET_PROFILE_USER';
 export const addNewPostAC = () => ({ type: ADD_NEW_POST });
 export const updateTextPostAC = (text) => ({ type: UPDATE_TEXT_POST, text: text });
 export const setProfileUserAC = (profile) => ({ type: SET_PROFILE_USER, profile: profile });
+
+export const getProfileUserTC = (userId) => {
+   return (dispatch) => {
+      UserAPI.profileUser(userId).then(data => {
+                              dispatch(setProfileUserAC(data))
+                           });
+   }
+}
 
 let initialState = {
    postData: [
