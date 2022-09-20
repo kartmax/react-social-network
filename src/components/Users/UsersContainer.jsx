@@ -3,6 +3,7 @@ import { getUsersTC, changePageTC, onFollowTC } from "../../redux/reducers/users
 import React from "react";
 import Users from "./Users";
 import Preloader from "../global/Preloader/Preloader";
+import { Navigate } from "react-router-dom";
 
 const mapStateToProps = (state) => {
    return {
@@ -11,7 +12,8 @@ const mapStateToProps = (state) => {
       totalUsersCount: state.USERS_REDUSER.totalUsersCount,
       currentPage: state.USERS_REDUSER.currentPage,
       isPreloader: state.USERS_REDUSER.isPreloader,
-      isDisabledBtn: state.USERS_REDUSER.isDisabledBtn
+      isDisabledBtn: state.USERS_REDUSER.isDisabledBtn,
+      isAuth: state.AUTH_REDUSER.isAuth
    };
 };
 
@@ -30,7 +32,9 @@ class UsersApiContainer extends React.Component {
       this.props.changePageTC(this.props.pageSize, pageNumber)
    }
 
+   
    render() {
+      if(!this.props.isAuth) return <Navigate to='/login' />
       return (
          <>
             { this.props.isPreloader ? <Preloader /> : null }    

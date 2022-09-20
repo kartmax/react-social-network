@@ -7,12 +7,15 @@ import {
    // useLocation,
    // useNavigate,
    useParams,
+
+   Navigate
 } from "react-router-dom";
 
 
 let mapStateToProps = (state) => {
  return {
-   profile: state.ADD_NEW_POST_REDUSER.profile
+   profile: state.ADD_NEW_POST_REDUSER.profile,
+   isAuth: state.AUTH_REDUSER.isAuth
  }
 }
 
@@ -26,8 +29,9 @@ class ProfileApiConstainer extends React.Component {
       }
       this.props.getProfileUserTC(userId);
    }
-
+   
    render () {
+      if(!this.props.isAuth) return <Navigate to='/login' />
       return (
          <>
             { this.props.profile != null ? <Profile profile={this.props.profile} /> : <Preloader />  }
