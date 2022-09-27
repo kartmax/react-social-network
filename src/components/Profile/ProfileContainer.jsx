@@ -7,15 +7,13 @@ import {
    // useLocation,
    // useNavigate,
    useParams,
-
-   Navigate
 } from "react-router-dom";
+import { WithAuthRedirectHOC } from "../../hoc/WithAuthRedirect"
 
 
 let mapStateToProps = (state) => {
  return {
    profile: state.ADD_NEW_POST_REDUSER.profile,
-   isAuth: state.AUTH_REDUSER.isAuth
  }
 }
 
@@ -31,7 +29,6 @@ class ProfileApiConstainer extends React.Component {
    }
    
    render () {
-      if(!this.props.isAuth) return <Navigate to='/login' />
       return (
          <>
             { this.props.profile != null ? <Profile profile={this.props.profile} /> : <Preloader />  }
@@ -56,6 +53,8 @@ function withRouter(Component) {
    return ComponentWithRouterProp;
 }
 
-let ProfileConstainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileApiConstainer));
+const AuthRedirectComponent = WithAuthRedirectHOC(ProfileApiConstainer);
+
+let ProfileConstainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthRedirectComponent));
 
 export default ProfileConstainer;

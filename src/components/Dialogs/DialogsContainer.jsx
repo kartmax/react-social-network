@@ -1,5 +1,6 @@
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
+import { WithAuthRedirectHOC } from '../../hoc/WithAuthRedirect';
 
 const mapStateToProps = (state) => {
    let stateDialogPage = state.ADD_NEW_MESSAGE_REDUSER;
@@ -7,10 +8,11 @@ const mapStateToProps = (state) => {
       dialogData : stateDialogPage.dialogData,
       messageData : stateDialogPage.messageData,
       main_user : stateDialogPage.mainUser,
-      isAuth: state.AUTH_REDUSER.isAuth
    }
 };
 
-const DialogsContainer = connect(mapStateToProps)(Dialogs);
+const AuthRedirectComponent = WithAuthRedirectHOC(Dialogs);
+
+const DialogsContainer = connect(mapStateToProps)(AuthRedirectComponent);
 
 export default DialogsContainer;

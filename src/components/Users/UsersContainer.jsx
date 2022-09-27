@@ -3,7 +3,7 @@ import { getUsersTC, changePageTC, onFollowTC } from "../../redux/reducers/users
 import React from "react";
 import Users from "./Users";
 import Preloader from "../global/Preloader/Preloader";
-import { Navigate } from "react-router-dom";
+import { WithAuthRedirectHOC } from "../../hoc/WithAuthRedirect";
 
 const mapStateToProps = (state) => {
    return {
@@ -13,7 +13,6 @@ const mapStateToProps = (state) => {
       currentPage: state.USERS_REDUSER.currentPage,
       isPreloader: state.USERS_REDUSER.isPreloader,
       isDisabledBtn: state.USERS_REDUSER.isDisabledBtn,
-      isAuth: state.AUTH_REDUSER.isAuth
    };
 };
 
@@ -34,7 +33,6 @@ class UsersApiContainer extends React.Component {
 
    
    render() {
-      if(!this.props.isAuth) return <Navigate to='/login' />
       return (
          <>
             { this.props.isPreloader ? <Preloader /> : null }    
@@ -52,7 +50,9 @@ class UsersApiContainer extends React.Component {
    }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer);
+const AuthRedirectComponent = WithAuthRedirectHOC(UsersApiContainer);
+
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 
 export default UsersContainer;
