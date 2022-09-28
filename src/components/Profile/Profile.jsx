@@ -7,9 +7,9 @@ const Profile = (props) => {
    return (
       <div className={`${styles.profile_wrap}`}>
 
-         <div className={styles.profile_top}>
+         {/* <div className={styles.profile_top}>
             <img alt="description" src="https://img5.goodfon.ru/wallpaper/nbig/9/ec/fon-abstraktsiia-tekstura-1.jpg"></img>
-         </div>
+         </div> */}
 
          <div className={styles.profile_bottom}>
             <User profile={props.profile} />

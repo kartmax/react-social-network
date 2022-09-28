@@ -1,6 +1,5 @@
 import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { authMeTC } from "../redux/reducers/auth-reducer";
 import { compose } from "redux";
 
 const mapStateToPropsForRedirect = (state) => {
@@ -8,22 +7,14 @@ const mapStateToPropsForRedirect = (state) => {
       isAuth: state.AUTH_REDUSER.isAuth
    }
 }
-const mapDispatchToPropsForRedirect = {
-   authMeTC
-}
 
 export const WithAuthRedirectHOC = (Component) => {
-   const isAuthUser = async (props) => {
-      await props.authMeTC()
-      if(!props.isAuth) return <Navigate to='/login' />
-    }
-    isAuthUser();
-
    const AuthRedirectComponent = (props) => {
+      if(!props.isAuth) return <Navigate to='/login' />
       return <Component {...props} />
    }
 
    return compose(
-      connect(mapStateToPropsForRedirect, mapDispatchToPropsForRedirect)
+      connect(mapStateToPropsForRedirect)
    )(AuthRedirectComponent)
 }
