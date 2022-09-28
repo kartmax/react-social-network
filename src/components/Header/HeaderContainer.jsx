@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
 import { authMeTC } from '../../redux/reducers/auth-reducer';
+import { compose } from 'redux';
 
 const mapStateToProps = (state) => {
    return {
@@ -25,6 +26,6 @@ class HeaderApiContainer extends React.Component {
    }
 }
 
-const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderApiContainer);
-
-export default HeaderContainer;
+export default compose (
+   connect(mapStateToProps, mapDispatchToProps)
+)(HeaderApiContainer)

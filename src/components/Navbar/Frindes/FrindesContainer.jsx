@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Frindes from './Frindes';
+import { compose } from 'redux';
 
 const mapStateToProps = (state) => {
    return {
@@ -7,7 +8,6 @@ const mapStateToProps = (state) => {
    }
 };
 
-const FrindesContainer = connect(mapStateToProps)(Frindes);
-
-
-export default FrindesContainer;
+export default compose (
+   connect(mapStateToProps)
+)(Frindes);

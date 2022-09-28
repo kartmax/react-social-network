@@ -4,6 +4,7 @@ import React from "react";
 import Users from "./Users";
 import Preloader from "../global/Preloader/Preloader";
 import { WithAuthRedirectHOC } from "../../hoc/WithAuthRedirect";
+import { compose } from "redux";
 
 const mapStateToProps = (state) => {
    return {
@@ -50,9 +51,7 @@ class UsersApiContainer extends React.Component {
    }
 }
 
-const AuthRedirectComponent = WithAuthRedirectHOC(UsersApiContainer);
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-
-
-export default UsersContainer;
+export default compose(
+   connect(mapStateToProps, mapDispatchToProps),
+   WithAuthRedirectHOC
+)(UsersApiContainer);

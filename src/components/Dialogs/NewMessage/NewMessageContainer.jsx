@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { addNewMessageAC, changeNewMessageAC } from '../../../redux/reducers/messages-reducer';
 import NewMessage from './NewMessage';
+import { compose } from 'redux';
 
 const mapStateToProps = (state) => {
    return {
@@ -13,6 +14,6 @@ const mapDispatchToProps = {
       changeNewMessageAC
 };
 
-const NewMessageContainer = connect(mapStateToProps, mapDispatchToProps)(NewMessage);
-
-export default NewMessageContainer;
+export default compose (
+   connect(mapStateToProps, mapDispatchToProps)
+)(NewMessage);

@@ -3,12 +3,9 @@ import Profile from "./Profile";
 import { connect } from "react-redux";
 import { getProfileUserTC } from "../../redux/reducers/profile-reducer";
 import Preloader from "../global/Preloader/Preloader";
-import {
-   // useLocation,
-   // useNavigate,
-   useParams,
-} from "react-router-dom";
-import { WithAuthRedirectHOC } from "../../hoc/WithAuthRedirect"
+import { WithRouterHOC } from "../../hoc/WithRouter";
+import { WithAuthRedirectHOC } from "../../hoc/WithAuthRedirect";
+import { compose } from "redux";
 
 
 let mapStateToProps = (state) => {
@@ -37,24 +34,8 @@ class ProfileApiConstainer extends React.Component {
    }
 }
 
-function withRouter(Component) {
-   function ComponentWithRouterProp(props) {
-      //  let location = useLocation();
-      //  let navigate = useNavigate();
-       let params = useParams();
-       return (
-           <Component
-               {...props}
-               // router={{ location, navigate, params }}
-               router={{ params }}
-           />
-       );
-   }
-   return ComponentWithRouterProp;
-}
-
-const AuthRedirectComponent = WithAuthRedirectHOC(ProfileApiConstainer);
-
-let ProfileConstainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthRedirectComponent));
-
-export default ProfileConstainer;
+export default compose(
+   connect(mapStateToProps, mapDispatchToProps),
+   WithRouterHOC,
+   WithAuthRedirectHOC
+)(ProfileApiConstainer);

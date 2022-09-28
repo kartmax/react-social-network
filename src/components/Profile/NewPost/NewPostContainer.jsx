@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { addNewPostAC, updateTextPostAC } from '../../../redux/reducers/profile-reducer'
 import NewPost from './NewPost';
+import { compose } from 'redux';
 
 const mapStateToProps = (state) => {
    return {
@@ -13,7 +14,6 @@ const mapDispatchToProps = {
       updateTextPostAC
 }
 
-const NewPostContainer = connect(mapStateToProps, mapDispatchToProps)(NewPost);
-
-
-export default NewPostContainer;
+export default compose(
+   connect(mapStateToProps, mapDispatchToProps)
+)(NewPost);
