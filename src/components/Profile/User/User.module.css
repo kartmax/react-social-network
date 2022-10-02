@@ -16,6 +16,7 @@
 .userDescr {
    font-style: italic;
    opacity: .8;
+   cursor: pointer;
 }
 .openWork {
    font-style: italic;

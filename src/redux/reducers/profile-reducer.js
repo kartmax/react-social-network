@@ -1,19 +1,37 @@
-import { UserAPI } from "../../api/api";
+import { profileAPI } from "../../api/api";
 
+// values for action.type
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const UPDATE_TEXT_POST = 'UPDATE-TEXT-POST';
 const SET_PROFILE_USER = 'SET_PROFILE_USER';
+const SET_STATUS = 'SET_STATUS';
 
+// ActionCreators
 export const addNewPostAC = () => ({ type: ADD_NEW_POST });
 export const updateTextPostAC = (text) => ({ type: UPDATE_TEXT_POST, text: text });
 export const setProfileUserAC = (profile) => ({ type: SET_PROFILE_USER, profile: profile });
+export const setStatusUserAC = (status) => ({ type: SET_STATUS, status: status });
 
+// ThunkCreators
 export const getProfileUserTC = (userId) => (dispatch) => {
-   UserAPI.profileUser(userId).then(data => {
+   profileAPI.getProfile(userId).then(data => {
                            dispatch(setProfileUserAC(data))
                         });
 }
+export const getStatusUserTC = (userId) => (dispatch) => {
+   profileAPI.getStatus(userId).then(data => {
+      dispatch(setStatusUserAC(data))
+   })
+}
+export const updateStatusUserTC = (status) => (dispatch) => {
+   profileAPI.updateStatus(status).then(data => {
+      if(data.resultCode === 0) {
+         dispatch(setStatusUserAC(status))
+      }
+   })
+}
 
+// initialState
 let initialState = {
    postData: [
       { id: 1, like: 5, text: ['Привет!!!'], avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuDoisN_XW3IVsEn4qXXTiqfTFBCCQOWqDFg&usqp=CAU' },
@@ -25,9 +43,11 @@ let initialState = {
       id: 5,
       avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLoW3SYolC4CqVUO8mwFZl-GLg0bKTDZkJ7g&usqp=CAU',
    },
-   profile : null
+   profile : null,
+   status : '',
 };
 
+// Reduser
 const ADD_NEW_POST_REDUSER = (state = initialState, action) => {
    switch (action.type) {
       case ADD_NEW_POST: {
@@ -58,6 +78,10 @@ const ADD_NEW_POST_REDUSER = (state = initialState, action) => {
 
       case SET_PROFILE_USER: {
          return { ...state, profile: action.profile }
+      }
+
+      case SET_STATUS: {
+         return { ...state, status: action.status }
       }
 
       default:

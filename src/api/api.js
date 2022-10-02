@@ -47,9 +47,34 @@ export const UserAPI = {
    },
    
    profileUser : (userId) => {
+      console.warn('Метод устарел UserAPI.profileUser. Используйте вместо него вот этот profileAPI.getProfile')
+      return profileAPI.getProfile(userId)
+   },
+}
+
+export const profileAPI = {
+   getProfile : (userId) => {
       let urlApiUsers = `/profile/${userId}`;
       return instansAxios
                .get(urlApiUsers)
+               .then(response => {
+                  return response.data
+               })
+   },
+
+   getStatus : (userId) => {
+      let urlApiUsers = `/profile/status/${userId}`;
+      return instansAxios
+               .get(urlApiUsers)
+               .then(response => {
+                  return response.data
+               })
+   },
+
+   updateStatus : (status) => {
+      let urlApiUsers = `/profile/status`;
+      return instansAxios
+               .put(urlApiUsers, {status})
                .then(response => {
                   return response.data
                })

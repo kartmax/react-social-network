@@ -12,7 +12,7 @@ const Profile = (props) => {
          </div> */}
 
          <div className={styles.profile_bottom}>
-            <User profile={props.profile} />
+            <User profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
             <NewPostContainer />
             <PostsContainer />
          </div>
