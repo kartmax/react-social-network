@@ -1,8 +1,31 @@
+import styles from './Login.module.css'
+import { Field, reduxForm } from 'redux-form'
 
+const LoginForm = (props) => {
+   return (
+      <form onSubmit={props.handleSubmit} action="">
+         <Field type="text" placeholder='Login' name='login' component='input' />
+         <Field type="text" placeholder='Password' name='password' component='input' />
+         <Field id="remebmerMe" type="checkbox" name='remebmerMe' component='input' />
+         <label htmlFor="remebmerMe">remember me</label>
+         <button>Login</button>
+      </form>
+   )
+}
+
+const LoginReduxFormContainer = reduxForm({
+   form: 'login'
+ })(LoginForm)
 
 const Login = (props) => {
+   const onSubmit = (formData) => {
+      console.log(formData)
+   }
    return (
-      <h1>Login</h1>
+      <div className={styles.login_wrap}>
+         <h1>Login</h1>
+         <LoginReduxFormContainer onSubmit={onSubmit} />
+      </div>
    )
 }
 
