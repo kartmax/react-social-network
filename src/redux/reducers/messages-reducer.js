@@ -1,8 +1,6 @@
 const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
-const CHANGE_NEW_MESSAGE = 'CHANGE-NEW-MESSAGE';
 
-export const addNewMessageAC = () => ({ type: ADD_NEW_MESSAGE });
-export const changeNewMessageAC = (text) => ({ type: CHANGE_NEW_MESSAGE, text: text });
+export const addNewMessageAC = (message) => ({ type: ADD_NEW_MESSAGE, message });
 
 let initialState = {
    dialogData: [
@@ -17,7 +15,6 @@ let initialState = {
       { id: 3, dialog_id: 1, text: ['Hello world!!!'] },
       { id: 4, dialog_id: 2, text: ['Hello!)'] },
    ],
-   textNewMessage: '',
    mainUser: {
       id: 5,
       avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLoW3SYolC4CqVUO8mwFZl-GLg0bKTDZkJ7g&usqp=CAU',
@@ -28,7 +25,7 @@ const ADD_NEW_MESSAGE_REDUSER = (state = initialState, action ) => {
 
    switch (action.type) {
       case ADD_NEW_MESSAGE: {
-         let arrText = state.textNewMessage.split('\n');
+         let arrText = action.message.split('\n');
          if (arrText.length > 1 || arrText[0] !== '') {
             let message = {
                id: 1,
@@ -39,17 +36,9 @@ const ADD_NEW_MESSAGE_REDUSER = (state = initialState, action ) => {
             return {
                ...state,
                messageData : [...state.messageData, message],
-               textNewMessage : ''
             }
          };
          return {...state}
-      }
-
-      case CHANGE_NEW_MESSAGE: {
-         return {
-            ...state,
-            textNewMessage : action.text,
-         }
       }
 
       default:

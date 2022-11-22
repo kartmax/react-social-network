@@ -1,23 +1,28 @@
 import React from 'react'; 
 import styles from './NewPost.module.css';
+import { Field, reduxForm } from 'redux-form'
+
+const NewPostForm = (props) => {
+   return (
+      <form onSubmit={props.handleSubmit} className={styles.form_new_post}>
+         <Field type="text" placeholder='Enter your message' component='textarea' name='text_post' />
+         <button className="main_btn">Add your post</button>
+      </form>
+   )
+}
+
+const NewPostReduxForm = reduxForm({
+   form: 'post'
+})(NewPostForm);
 
 const NewPost = (props) => {
-   let textareaRef = React.createRef();
 
-   const onAddNewPost = () => {
-      props.addNewPostAC();
-   };
-
-   const onUpdateTextPost = () => {
-      const text = textareaRef.current.value;
-      props.updateTextPostAC(text);
+   const onAddNewPost = (formData) => {
+      props.addNewPostAC(formData.text_post);
    };
 
    return (
-      <form className={styles.form_new_post} onClick={(e) => { e.preventDefault() }}>
-         <textarea ref={textareaRef} value={props.newTextPost} type="text" onChange={onUpdateTextPost} placeholder='Enter your message'></textarea>
-         <button type='submit' onClick={onAddNewPost} className="main_btn">Add your post</button>
-      </form>
+      <NewPostReduxForm onSubmit={onAddNewPost} />
    );
 };
 
