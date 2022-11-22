@@ -6,15 +6,10 @@ const Message = (props) => {
          <p>{props.paragraph_text}</p>
       );
    };
-   let messageElements =
+   const messageElements =
       Array.from(props.message).map((text, idx) => <Paragraph key={idx} paragraph_text={text} />);
 
-   let addedClass = '';
-   if (props.dialog_id !== props.main_user.id) {
-      addedClass = 'your_message';
-   } else {
-      addedClass = 'my_message';
-   }
+   const addedClass = props.dialog_id !== props.main_user.id ? 'your_message' : 'my_message';
 
    return (
       <li className={styles.message_item}>
