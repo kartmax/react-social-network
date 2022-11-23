@@ -1,3 +1,40 @@
 .login_wrap {
    padding: 15px;
 }
+
+.title {
+   text-align: center;
+}
+
+.form {
+   display: flex;
+   flex-direction: column;
+   row-gap: 20px;
+   max-width: 450px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.field {
+   border-radius: var(--radius);
+   border: none;
+   box-shadow: none;
+   padding: 10px 15px;
+}
+.field:focus {
+   outline-color: var(--color-blue-light);
+}
+
+.wrapCheckbox {
+   display: inline-flex;
+   align-items: center;
+   column-gap: 20px;
+   padding-left: 10px;
+}
+.wrapCheckbox > label {
+   cursor: pointer;
+}
+
+.loginButton {
+   margin-top: 30px;
+}

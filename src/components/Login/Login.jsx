@@ -3,12 +3,14 @@ import { Field, reduxForm } from 'redux-form'
 
 const LoginForm = (props) => {
    return (
-      <form onSubmit={props.handleSubmit} action="">
-         <Field type="text" placeholder='Login' name='login' component='input' />
-         <Field type="text" placeholder='Password' name='password' component='input' />
-         <Field id="remebmerMe" type="checkbox" name='remebmerMe' component='input' />
-         <label htmlFor="remebmerMe">remember me</label>
-         <button>Login</button>
+      <form onSubmit={props.handleSubmit} className={styles.form}>
+         <Field className={styles.field} type="text" placeholder='Login' name='login' component='input' />
+         <Field className={styles.field} type="text" placeholder='Password' name='password' component='input' />
+         <div className={styles.wrapCheckbox}>
+            <Field className={`${styles.field} checkbox`} id="remebmerMe" type="checkbox" name='remebmerMe' component='input' />
+            <label htmlFor='remebmerMe'>remember me</label>
+         </div>
+         <button className={`main_btn ${styles.loginButton}`}>Login</button>
       </form>
    )
 }
@@ -23,7 +25,7 @@ const Login = (props) => {
    }
    return (
       <div className={styles.login_wrap}>
-         <h1>Login</h1>
+         <h1 className={styles.title}>Login</h1>
          <LoginReduxFormContainer onSubmit={onSubmit} />
       </div>
    )

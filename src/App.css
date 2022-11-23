@@ -91,4 +91,38 @@ textarea:focus {
    text-align: center;  
 }
 
+/* checkbox */
+.checkbox {
+   --size: 1px;
+   width: var(--size);
+   height: var(--size);
+   position: relative;
+   outline: none;
+   border: none;
+   background: none;
+}
+.checkbox::before {
+   content: '';
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: calc(var(--size) * 20);
+   height: calc(var(--size) * 20);
+   background-color: #fff;
+   color: var(--color-blue-light);
+   border-radius: var(--radius);
+   cursor: pointer;
+}
+.checkbox:checked::before {
+   content: '\2713';
+   border: 1px solid var(--color-blue-light);
+}
+.checkbox:focus::before {
+   border: 2px solid var(--color-blue-light);
+}
+
 
