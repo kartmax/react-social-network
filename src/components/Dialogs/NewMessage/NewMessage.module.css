@@ -3,14 +3,6 @@
    position: relative;
 }
 
-.new_message_area {
-   width: 100%;
-   min-height: 100px;
-   border: none;
-   border-radius: var(--radius);
-   padding: 15px 45px 15px 15px;
-}
-
 .btn_add_message {
    --size: 35px;
    --position: 5px;

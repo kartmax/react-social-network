@@ -1,0 +1,38 @@
+.formControl {
+
+}
+
+.formControl.error,
+.formControl.error:focus,
+.formControl.error:focus {
+   outline: 1px solid red;
+}
+
+.formControl.error + span {
+   display: block;
+   width: 100%;
+   margin-bottom: 10px;
+   color: red;
+   font-size: .865rem;
+   padding-left: 10px;
+   padding-top: 2px;
+}
+
+.new_message_area {
+   width: 100%;
+   min-height: 100px;
+   border: none;
+   border-radius: var(--radius);
+   padding: 15px 45px 15px 15px;
+}
+
+.field {
+   border-radius: var(--radius);
+   border: none;
+   box-shadow: none;
+   padding: 10px 15px;
+   margin-top: 20px;
+}
+.field:focus {
+   outline-color: var(--color-blue-light);
+}

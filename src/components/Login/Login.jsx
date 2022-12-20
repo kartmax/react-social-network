@@ -1,11 +1,14 @@
 import styles from './Login.module.css'
 import { Field, reduxForm } from 'redux-form'
+import { Input } from '../global/formControls/FormControls'
+import { requreField, maxLengthCreator } from '../../utils/validators/validators'
 
 const LoginForm = (props) => {
+   const maxLength10 = maxLengthCreator(10);
    return (
       <form onSubmit={props.handleSubmit} className={styles.form}>
-         <Field className={styles.field} type="text" placeholder='Login' name='login' component='input' />
-         <Field className={styles.field} type="text" placeholder='Password' name='password' component='input' />
+         <Field type="text" placeholder='Login' name='login' component={Input} validate={[requreField]} />
+         <Field type="text" placeholder='Password' name='password' component={Input} validate={[requreField, maxLength10]} />
          <div className={styles.wrapCheckbox}>
             <Field className={`${styles.field} checkbox`} id="remebmerMe" type="checkbox" name='remebmerMe' component='input' />
             <label htmlFor='remebmerMe'>remember me</label>
