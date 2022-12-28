@@ -45,6 +45,17 @@ export const UserAPI = {
                   return response.data
                })
    },
+
+   login : (email, password, rememberMy = false) => {
+      let url = `/auth/login`;
+      return instansAxios
+               .post(url, { email, password, rememberMy });
+   },
+   logout : () => {
+      let url = `/auth/login`;
+      return instansAxios
+               .delete(url);
+   },
    
    profileUser : (userId) => {
       console.warn('Метод устарел UserAPI.profileUser. Используйте вместо него вот этот profileAPI.getProfile')

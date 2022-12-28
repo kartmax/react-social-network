@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { authMeTC } from '../../redux/reducers/auth-reducer';
+import { authMeTC, logoutTC } from '../../redux/reducers/auth-reducer';
 import { compose } from 'redux';
 
 const mapStateToProps = (state) => {
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
    }
 }
 const mapDispatchToProps = {
-   authMeTC
+   authMeTC,
+   logout : logoutTC
 }
 
 class HeaderApiContainer extends React.Component {

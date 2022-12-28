@@ -53,6 +53,7 @@
 
 }
 .login_link {
+   background: none;
    color: #fff;
    text-decoration: none;
    border: 1px solid #fff;
@@ -63,4 +64,10 @@
 .login_link:hover {
    background-color: #fff;
    color: var(--color-blue-light);
+}
+
+.wrapLogOut {
+   display: inline-flex;
+   gap: 20px;
+   align-items: center;
 }
